@@ -5,12 +5,28 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+const mysql = require('mysql');
+var app = express();
 
 //=========ROUTE IMPORTS==================================
 var indexRouter = require('./routes/index');
 var searchRouter = require('./routes/search');
 
-var app = express();
+//========CONNECT TO DB==================
+const db = mysql.createConnection ({
+  host: 'localhost',
+  user: 'testuser@localhost',
+  password: 'secret',
+  database: 'gamesdb'
+});
+
+db.connect((err) => {
+  if (err) {
+      throw err;
+  }
+  console.log('Connected to database');
+});
+global.db = db;
 
 //========BODY PARSER CONFIGURATION==================================
 app.use(bodyParser.urlencoded({ extended: false }));

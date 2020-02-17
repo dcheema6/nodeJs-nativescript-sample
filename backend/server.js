@@ -1,5 +1,5 @@
-var app = require('./app')
-var port = 3000;
+var app = require('./app');
+const port = 3000;
 
 //middleware for developement only --be sure to delete before release
 app.use(function (request, response, next) {
