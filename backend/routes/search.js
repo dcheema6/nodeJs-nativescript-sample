@@ -1,10 +1,14 @@
-var express = require('express');
-var router = express.Router();
+exports.query = function(req, res) {
+  req.getConnection(function(err, conn) {
+    let qstring = req.params.qstring.toUpperCase();
 
+    conn.query("SELECT * FROM games WHERE UPPER(title) LIKE '%" + qstring + "%' LIMIT 10", function(err, rows) {
+      if(err)
+        console.log("Error Selecting : %s ",err );
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-module.exports = router;
+      res.json({
+        data: rows
+      });
+    });
+  });
+}
