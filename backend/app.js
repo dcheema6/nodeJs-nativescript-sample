@@ -13,14 +13,16 @@ var app = express();
 //=========ROUTE IMPORTS==================================
 var indexRouter = require('./routes/index');
 var searchRouter = require('./routes/search');
+var loadDBRouter = require('./routes/loadDB');
 
 //========SET DB CONNECTION==================
 app.use(
   connection(mysql,{
-    host: ac.host,
     user: ac.user,
     password: ac.password,
-    database: ac.database
+    database: ac.database,
+    socketPath: ac.socketPath,
+    charset: ac.charset
   },'request')
 );
 
@@ -35,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //========ROUTE CONFIG==================================
 app.use('/', indexRouter);
 app.use('/search/:qstring/:page', searchRouter.query);
+app.use('/search/id/:id', searchRouter.queryByID);
+app.use('/setupdb', loadDBRouter.loadDB);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

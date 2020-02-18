@@ -1,40 +1,23 @@
-var ac = require('./resources/app_constants')
-const mysql = require('mysql');
-const games = require('./resources/games.json');
+const games = require('./../resources/games.json');
 
 //========CONNECT TO DB==================
-const db = mysql.createConnection({
-  host: ac.host,
-  user: ac.user,
-  password: ac.password,
-  database: ac.database,
-  charset: 'utf8mb4'
-});
 
-db.connect((err) => {
-  if (err) {
-    throw err;
-  }
 
-  loadDB();
+exports.loadDB = function(req, res) {
+  req.getConnection(function(err, db) {
+    let dropTable = 'drop table if exists games';
+    db.query(dropTable, function (err) {
+      if (err) {
+        console.log(err.message);
+        return;
+      }
 
-  console.log('Connected to database');
-});
-
-function loadDB() {
-  let dropTable = 'drop table if exists games';
-  db.query(dropTable, function (err) {
-    if (err) {
-      console.log(err.message);
-      endConnection();
-      return;
-    }
-
-    createTable(populatedDB);
+      createTable(db, res, populatedDB);
+    });
   });
 }
 
-function createTable(callback) {
+function createTable(db, res, callback) {
   let createTable = `create table if not exists games(
         id varchar(255) primary key not null,
         title varchar(255) not null,
@@ -47,14 +30,13 @@ function createTable(callback) {
   db.query(createTable, function (err) {
     if (err) {
       console.log(err.message);
-      endConnection();
       return;
     }
-    callback();
+    callback(db, res);
   });
 }
 
-function populatedDB() {
+function populatedDB(db, res) {
   let insert = "insert into games (id, title, imgurl, genre, rating, rCount) values ?";
   let values = []
   games.forEach(game => {
@@ -64,12 +46,6 @@ function populatedDB() {
 
   db.query(insert, [values], function (err) {
     if (err) console.log(err.message);
-    endConnection();
-  });
-}
-
-function endConnection() {
-  db.end(function (err) {
-    if (err) console.log(err.message);
+    res.send('db Updated');
   });
 }
