@@ -20,7 +20,7 @@ export class ItemDetailComponent implements OnInit {
     ngOnInit(): void {
         const id = this.route.snapshot.params.id;
         this.itemService.getItem(id).subscribe((result: any) => {
-            console.log(result);
+            console.log("FUCCKKKKKKKKKKKKKK "+result.data[0].imgurl);
             if (result.data[0])
                 this.item = result.data[0];
             else console.log("Item not found!");

@@ -1,9 +1,20 @@
 <ActionBar title="Details"></ActionBar>
 
-<FlexboxLayout flexDirection="column">
-    <FlexboxLayout class="m-15">
-        <Label class="h2" [text]="item.id + '. '"></Label>
-        <Label class="h2" [text]="item.title"></Label>
-    </FlexboxLayout>
-    <Label class="h4 m-15" [text]="item.genre"></Label>
-</FlexboxLayout>
+<GridLayout rows="auto, *">
+    <GridLayout row="0" verticalAlignment="top"
+        height="300">
+        <Image verticalAlignment="top"
+                height="100%" width="100%" [src]="item.imgurl"
+                stretch="aspectFill">
+        </Image>
+    </GridLayout>
+    <GridLayout row="1">
+        <FlexboxLayout flexDirection="column">
+            <Label class="h2 m-15" [text]="item.title"></Label>
+            <FlexboxLayout class="m-15">
+            <Label class="h3" text="Genre: "></Label>
+            <Label class="h3" [text]="item.genre"></Label>
+            </FlexboxLayout>
+        </FlexboxLayout>
+    </GridLayout>
+</GridLayout>

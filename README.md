@@ -3,6 +3,7 @@
 * Backend is deployed to google app engine and live at url: https://game-search-57266.appspot.com (I will take it down by the end of Feb 2020).
 * Front end is configured to connect to the serveless backend, hence there is no need to run it locally.
 * I chose to migrate the data from games.json to Cloud MySQL for better performence and less hastle for anyone trying to run this app.
+* Clicking on queried items will show their details.
 
 # Getting Started
 
@@ -33,3 +34,12 @@ Please note: I have found that after you run: tns preview; and scan the QR code,
 1. https://game-search-57266.appspot.com/setupdb (irrelevent).
 2. https://game-search-57266.appspot.com/search/{query_text}/{page_number} : Returns 20 results per page
 2. https://game-search-57266.appspot.com/searchbyid/{id} : Returns item by id
+
+## Objects of Interst
+* Backend
+1. app.js
+2. routes/
+3. configs: resources/, app.yaml
+4. default route view: public/
+* Frontend:
+1. src/app/item

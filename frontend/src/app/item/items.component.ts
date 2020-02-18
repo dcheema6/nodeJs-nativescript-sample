@@ -20,7 +20,7 @@ export class ItemsComponent implements OnInit {
 
     onTextChanged(args) {
         console.log(args.value);
-        if (!this.doQuery) return;
+        if (!this.doQuery)  return;
         this.doQuery = false;
 
         (async () => {
@@ -28,9 +28,13 @@ export class ItemsComponent implements OnInit {
             await this.delay(300);
 
             this.queryText = args.object.text;
-            if (!this.queryText) return;
+            if (!this.queryText) {
+                this.items = [];
+                return;
+            }
 
             this.updateItems(this.queryText, true);
+            this.doQuery = true;
         }) ()
     }
 
@@ -51,7 +55,6 @@ export class ItemsComponent implements OnInit {
             result.data.forEach(item => {
                 this.items.push(item);
             });;
-            this.doQuery = true;
         });
     }
 
