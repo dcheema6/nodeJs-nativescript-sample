@@ -1,8 +1,8 @@
 # Notes
 * I built the UI using native script with angular, underestimating the learning curve of Native script it took me lot longer than I thought it would.
-* Backend is deployed to google app engine and live at url: https://game-search-57266.appspot.com (I will take it down by the end of Feb 2020).
+* Backend is deployed to **GCP AppEngine** and live at url: https://game-search-57266.appspot.com (I will take it down by the end of Feb 2020).
 * Front end is configured to connect to the serveless backend, hence there is no need to run it locally.
-* I chose to migrate the data from games.json to Cloud MySQL for better performence and less hastle for anyone trying to run this app.
+* I chose to migrate the data from games.json to **Cloud MySQL** for better performence and less hastle for anyone trying to run this app.
 * Clicking on queried items will show their details.
 
 # Getting Started
