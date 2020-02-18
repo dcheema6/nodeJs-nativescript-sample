@@ -1,17 +1,7 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "es2015",
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "paths": {
-      "@src/*": [
-        "src/*.tns.ts",
-        "src/*.ts"
-      ]
+    "extends": "./tsconfig",
+    "compilerOptions": {
+        "module": "esNext",
+        "moduleResolution": "node"
     }
-  },
-  "files": [
-    "src/main.tns.ts"
-  ]
 }

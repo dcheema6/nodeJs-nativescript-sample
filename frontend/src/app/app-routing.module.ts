@@ -1,27 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { Routes } from "@angular/router";
 
-import { ItemsComponent } from './item/items.component';
-import { ItemDetailComponent } from './item/item-detail.component';
+import { ItemsComponent } from "./item/items.component";
+import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/searchgames',
-    pathMatch: 'full',
-  },
-  {
-      path: 'searchgames',
-      component: ItemsComponent,
-  },
-  {
-    path: 'game/:id',
-    component: ItemDetailComponent
-  }
+    { path: "", redirectTo: "/items", pathMatch: "full" },
+    { path: "items", component: ItemsComponent },
+    { path: "item/:id", component: ItemDetailComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [NativeScriptRouterModule.forRoot(routes)],
+    exports: [NativeScriptRouterModule]
 })
 export class AppRoutingModule { }

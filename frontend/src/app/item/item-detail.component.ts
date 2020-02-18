@@ -6,10 +6,11 @@ import { ItemService } from "./item.service";
 
 @Component({
     selector: "ns-details",
-    templateUrl: "./item-detail.component.html"
+    templateUrl: "./item-detail.component.html",
+    providers: [ItemService]
 })
 export class ItemDetailComponent implements OnInit {
-    item: Item;
+    item: any;
 
     constructor(
         private itemService: ItemService,
@@ -18,14 +19,10 @@ export class ItemDetailComponent implements OnInit {
 
     ngOnInit(): void {
         const id = this.route.snapshot.params.id;
-        this.itemService.getItem(id).subscribe((item) => {
-            console.log(item);
-            this.item.id = item.id;
-            this.item.title = item.title;
-            this.item.genre = item.genre;
-            this.item.imageURL = item.imageurl;
-            this.item.rating = item.rating;
-            this.item.rCount = item.rCount;
+        this.itemService.getItem(id).subscribe((result: any) => {
+            if (result.data[0])
+                this.item = result.data[0];
+            else console.log("Item not found!");
         });
     }
 }

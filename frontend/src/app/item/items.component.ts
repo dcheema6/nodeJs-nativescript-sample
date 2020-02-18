@@ -6,10 +6,12 @@ import { ItemService } from "./item.service";
 
 @Component({
     selector: "ns-items",
-    templateUrl: "./items.component.html"
+    templateUrl: "./items.component.html",
+    providers: [ItemService]
 })
 export class ItemsComponent implements OnInit {
-    items: Array<Item>;
+    items: Array<any>;
+    doQuery = false;
 
     constructor(private itemService: ItemService) { }
 
@@ -18,18 +20,8 @@ export class ItemsComponent implements OnInit {
 
     onTextChanged(args) {
         if (!args.value) return;
-        this.itemService.queryItems(args.value).subscribe((items: any) => {
-            console.log(items);
-            items.data.forEach((item) => {
-                let nItem: Item;
-                nItem.id = item.id;
-                nItem.title = item.title;
-                nItem.genre = item.genre;
-                nItem.imageURL = item.imageurl;
-                nItem.rating = item.rating;
-                nItem.rCount = item.rCount;
-                this.items.push(nItem);
-            });
+        this.itemService.queryItems(args.value).subscribe((result: any) => {
+            this.items = result.data;
         });
     }
 

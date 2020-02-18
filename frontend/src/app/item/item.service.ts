@@ -1,8 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http"
-
-import { Item } from "./item";
-import { Observable } from "tns-core-modules/ui/page/page";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
     providedIn: "root"
@@ -13,10 +10,11 @@ export class ItemService {
     }
 
     queryItems(query: string) {
-        return this.http.get('http://localhost:3000/search/' + query + '/0');
+        console.log(query);
+        return this.http.get('https://game-search-57266.appspot.com/search/' + query + '/0');
     }
 
     getItem(id: string) {
-        return this.http.get('http://localhost:3000/search/id/' + id);
+        return this.http.get('https://game-search-57266.appspot.com/search/id/' + id);
     }
 }

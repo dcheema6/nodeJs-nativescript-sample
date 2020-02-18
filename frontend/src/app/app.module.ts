@@ -1,32 +1,40 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
-import { AppRoutingModule } from '@src/app/app-routing.module';
-import { AppComponent } from '@src/app/app.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
+import { ItemService } from "./item/item.service"
 
-import { ItemService } from "./item/item.service";
+// Uncomment and add to NgModule imports if you need to use two-way binding
+// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+
+// Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ItemsComponent,
-    ItemDetailComponent
-  ],
-  imports: [
-    NativeScriptModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [
-    ItemService
-  ],
-  bootstrap: [AppComponent],
-  schemas: [
-      NO_ERRORS_SCHEMA
-  ]
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        NativeScriptModule,
+        AppRoutingModule,
+        NativeScriptHttpClientModule
+    ],
+    declarations: [
+        AppComponent,
+        ItemsComponent,
+        ItemDetailComponent
+    ],
+    providers: [
+        ItemService
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
 })
+/*
+Pass your application module to the bootstrapModule function located in main.ts to start your app
+*/
 export class AppModule { }
