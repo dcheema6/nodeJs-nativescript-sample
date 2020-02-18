@@ -17,13 +17,13 @@ Backend (Optional):
 * MySql 5.7
 
 ### Setting Up
-* Run npm install in {project_root}/frontend
+* Run **npm install** in {project_root}/frontend
 Optional (backend)
 * Run npm i on {project_root}/backend
 * Create a database in MySQL and configure the backend accordingly (backend/resources/app_constants.js)
 
 ### Running the app
-* In frontend folder run command: tns preview (and follow the instructions to run it on your mobile device).
+* In frontend folder run command: **tns preview --hmr** (and follow the instructions to run it on your mobile device).
 Optional (backend)
 * Run command: node server (in the backend foler).
 * Initiate API http://localhost:3000/setupdb to populate your db (if you get any errors make sure the db is configured correctly).
