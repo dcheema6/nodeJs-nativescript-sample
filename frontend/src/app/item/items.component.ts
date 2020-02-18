@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SearchBar } from "tns-core-modules/ui/search-bar";
 
-import { Item } from "./item";
 import { ItemService } from "./item.service";
 
 @Component({
@@ -11,7 +9,9 @@ import { ItemService } from "./item.service";
 })
 export class ItemsComponent implements OnInit {
     items: Array<any>;
-    doQuery = false;
+    page = 0;
+    queryText: string;
+    doQuery = true;
 
     constructor(private itemService: ItemService) { }
 
@@ -19,14 +19,43 @@ export class ItemsComponent implements OnInit {
     }
 
     onTextChanged(args) {
-        if (!args.value) return;
-        this.itemService.queryItems(args.value).subscribe((result: any) => {
-            this.items = result.data;
-        });
+        console.log(args.value);
+        if (!this.doQuery) return;
+        this.doQuery = false;
+
+        (async () => {
+            // Delay saves about 50% queries
+            await this.delay(300);
+
+            this.queryText = args.object.text;
+            if (!this.queryText) return;
+
+            this.updateItems(this.queryText, true);
+        }) ()
     }
 
     onClear(args) {
-        const searchBar = args.object as SearchBar;
-        console.log(`Clear event raised`);
+        this.doQuery = true;
+        this.items = [];
+    }
+
+    onLoad(args) {
+        console.log("loading...");
+        this.page += 1;
+        this.updateItems(this.queryText, false);
+    }
+
+    updateItems(text: string, clear: boolean) {
+        this.itemService.queryItems(text, this.page).subscribe((result: any) => {
+            if (clear) this.items = [];
+            result.data.forEach(item => {
+                this.items.push(item);
+            });;
+            this.doQuery = true;
+        });
+    }
+
+    delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
     }
 }

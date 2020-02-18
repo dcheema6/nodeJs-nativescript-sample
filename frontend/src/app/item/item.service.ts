@@ -9,9 +9,8 @@ export class ItemService {
         
     }
 
-    queryItems(query: string) {
-        console.log(query);
-        return this.http.get('https://game-search-57266.appspot.com/search/' + query + '/0');
+    queryItems(query: string, page: number) {
+        return this.http.get('https://game-search-57266.appspot.com/search/' + query + '/' + page);
     }
 
     getItem(id: string) {

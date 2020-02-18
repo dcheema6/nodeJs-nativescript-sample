@@ -1,13 +1,14 @@
 <ActionBar title="My App">
 </ActionBar>
 <GridLayout rows="auto,auto,*,auto" columns="auto">
-    <GridLayout row="0">
+    <GridLayout row="0" width="100%" verticalAlignment="top">
         <SearchBar hint="Enter search term here ..."
                     [text]="searchPhrase" (textChange)="onTextChanged($event)" 
                     (clear)="onClear($event)">
-        </SearchBar></GridLayout>
-    <GridLayout row="1">
-        <ListView [items]="items">
+        </SearchBar>
+    </GridLayout>
+    <GridLayout row="1" width="100%" height="100%">
+        <ListView [items]="items" (loadMoreItems)="onLoad($event)">
             <ng-template let-item="item">
                 <StackLayout>
                     <Label [nsRouterLink]="['/item', item.id]" [text]="item.title"></Label>
