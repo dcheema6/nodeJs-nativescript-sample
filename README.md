@@ -1,45 +1,37 @@
 # Notes
-* Backend is deployed to **GCP AppEngine** and is live at url: https://game-search-57266.appspot.com (Link expires after Feb 2020).
-* I have packaged the UI as **SearchGamesApp.apk** for ease of testing.
-* I built the UI using **Native Script with Angular**, underestimating the learning curve of Native script it took me lot longer than I thought it would.
+* I built the UI using **NativeScript with Angular**, underestimating the learning curve of NativeScript took me lot longer than I thought it would.
+* Backend is deployed to **GCP AppEngine** and live at url: https://game-search-57266.appspot.com (I will take it down by the end of Feb 2020).
+* Front end is configured to connect to the serveless backend, hence there is no need to run it locally.
+* I chose to migrate the data from games.json to **Cloud MySQL** for better performence and less hastle for anyone trying to run this app.
 * Clicking on queried items will show their details.
 
 # Getting Started
-Just install the apk on an andoid device and you are good to go.
-**Please note: first query takes a while to load as AppEngine spins up a new instance**.
-Thank you for your patience.
 
-## Some Possible improvements:
-* GCP Compute Engine would have been better option, however it had higher fee assosiated to it.
-
-## Optional steps to run loose files
-### Tools Used
-For UI:
+### Tools Required
 * npm
 * angular cli
 * native script cli
-* (On mobile device)
+(On your mobile device)
 * NativeScript Playground
 * NativeScript Preview
-For Backend:
+
+Backend (Optional):
 * Node 10+
 * MySql 5.7
 
-### Setting Up to run loose files in dev mode
-UI:
+### Setting Up
 * Run **npm install** in {project_root}/frontend
-Backend services:
+Optional (backend)
 * Run npm i on {project_root}/backend
 * Create a database in MySQL and configure the backend accordingly (backend/resources/app_constants.js)
 
 ### Running the app
-UI:
 * In frontend folder run command: **tns preview --hmr** (and follow the instructions to run it on your mobile device).
-Backend services:
+Optional (backend)
 * Run command: node server (in the backend foler).
 * Initiate API http://localhost:3000/setupdb to populate your db (if you get any errors make sure the db is configured correctly).
 
-Please note: I have found that after you run: tns preview; and scan the QR code, it takes a while to load the UI for the first time.
+Please note: I have found that after you run: tns preview; and scan the QR code, it takes a while to load the UI for the first time and first query takes a while to respond (I think this is a live sync issue with Native Script preview).
 
 ### Available end-points
 1. https://game-search-57266.appspot.com/setupdb (irrelevent).
