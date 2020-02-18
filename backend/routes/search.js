@@ -19,10 +19,9 @@ exports.query = function(req, res) {
 
 exports.queryByID = function(req, res) {
   req.getConnection(function(err, conn) {
-    let qstring = req.params.qstring.toUpperCase();
-    let page = req.params.page;
+    let id = req.params.id;
 
-    conn.query("SELECT * FROM games WHERE id = " + qstring,
+    conn.query("SELECT * FROM games WHERE id = " + id,
       function(err, rows) {
         if(err)
           console.log("Error Selecting : %s ", err);

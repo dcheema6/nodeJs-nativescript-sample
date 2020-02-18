@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //========ROUTE CONFIG==================================
 app.use('/', indexRouter);
 app.use('/search/:qstring/:page', searchRouter.query);
-app.use('/search/id/:id', searchRouter.queryByID);
+app.use('/searchbyid/:id', searchRouter.queryByID);
 app.use('/setupdb', loadDBRouter.loadDB);
 
 // catch 404 and forward to error handler

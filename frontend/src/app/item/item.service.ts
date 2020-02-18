@@ -10,10 +10,10 @@ export class ItemService {
     }
 
     queryItems(query: string, page: number) {
-        return this.http.get('https://game-search-57266.appspot.com/search/' + query + '/' + page);
+        return this.http.get('https://game-search-57266.appspot.com/search/' + encodeURIComponent(query) + '/' + page);
     }
 
     getItem(id: string) {
-        return this.http.get('https://game-search-57266.appspot.com/search/id/' + id);
+        return this.http.get('https://game-search-57266.appspot.com/searchbyid/' + id);
     }
 }
