@@ -20,7 +20,7 @@ export class ItemsComponent implements OnInit {
     }
 
     onTextChanged(args) {
-        console.log(args.value);
+        this.page = 0;
         if (!this.doQuery)  return;
         this.doQuery = false;
 
@@ -40,6 +40,7 @@ export class ItemsComponent implements OnInit {
     }
 
     onClear(args) {
+        this.page = 0;
         this.doQuery = true;
         this.items = [];
     }
