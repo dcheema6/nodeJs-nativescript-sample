@@ -16,6 +16,7 @@ export class ItemsComponent implements OnInit {
     constructor(private itemService: ItemService) { }
 
     ngOnInit(): void {
+        console.warn("First query takes a while to respond!");
     }
 
     onTextChanged(args) {

@@ -11,6 +11,9 @@
 * npm
 * angular cli
 * native script cli
+(On your mobile device)
+* NativeScript Playground
+* NativeScript Preview
 
 Backend (Optional):
 * Node 10+
