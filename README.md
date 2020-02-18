@@ -31,7 +31,9 @@ Optional (backend)
 * Run command: node server (in the backend foler).
 * Initiate API http://localhost:3000/setupdb to populate your db (if you get any errors make sure the db is configured correctly).
 
-Please note: I have found that after you run: tns preview; and scan the QR code, it takes a while to load the UI for the first time and first query takes a while to respond (I think this is a live sync issue with Native Script preview).
+Please note:
+* I have found that after you run: tns preview; and scan the QR code, it takes a while to load.
+* First query from UI takes way too long for reason I still have not figured out yet: AppEngine responsed quickly when called externally, hence problem lies in frontend.
 
 ### Available end-points
 1. https://game-search-57266.appspot.com/setupdb (irrelevent).
