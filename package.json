@@ -1,0 +1,22 @@
+{
+  "name": "example-nodejs-native",
+  "version": "1.0.0",
+  "description": "npm, node, nativescript, angular Commands run:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd frontend && ng serve --proxy-config proxy.conf.json\" \"cd backend && node server.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcheema6/Example-NodeJs-Native.git"
+  },
+  "author": "Davinderpal Cheema",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dcheema6/Example-NodeJs-Native/issues"
+  },
+  "homepage": "https://github.com/dcheema6/Example-NodeJs-Native#readme",
+  "dependencies": {
+  }
+}
